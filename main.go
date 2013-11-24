@@ -43,9 +43,9 @@ func main() {
 
 	deps := loadDependencies(".", p)
 
-  if deps == nil {
-    fail("Error loading dependency info")
-  }
+	if deps == nil {
+		fail("Error loading dependency info")
+	}
 
 	first := os.Args[1]
 	if first == "dependencytree" {
@@ -138,7 +138,14 @@ func setPwd() {
 func setupEnv() {
 	setPwd()
 	vendor := fmt.Sprintf("%s/%s", pwd, VendorDir)
-	err := os.Setenv("GOPATH", vendor)
+	gp := os.Getenv("GOPATH")
+	if gp != "" {
+		gp = fmt.Sprintf("%s%c%s", vendor, os.PathListSeparator, gp)
+	} else {
+		gp = vendor
+	}
+
+	err := os.Setenv("GOPATH", gp)
 	if err != nil {
 		fail(err)
 	}

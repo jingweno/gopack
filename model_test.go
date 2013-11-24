@@ -82,6 +82,7 @@ func TestSubPackages(t *testing.T) {
 }
 
 func TestTransitiveDependencies(t *testing.T) {
+  os.Setenv("GOPATH", "")
 	setupTestPwd()
 	setupEnv()
 

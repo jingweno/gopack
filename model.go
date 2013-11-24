@@ -73,12 +73,12 @@ func (d *Dependencies) VisitDeps(fn func(dep *Dep)) {
 }
 
 func (d *Dependencies) AnyDepsNeedFetching() bool {
-  for _, dep := range d.DepList {
-    if dep.fetch {
-      return true
-    }
-  }
-  return false
+	for _, dep := range d.DepList {
+		if dep.fetch {
+			return true
+		}
+	}
+	return false
 }
 
 func (d *Dependencies) AllDepsNeedFetching() bool {
